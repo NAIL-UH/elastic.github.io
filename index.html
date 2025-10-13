@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <link rel="stylesheet" href="./static/css/index.css">
-    <link rel="icon" href="static/images/icon.png">
+    <link rel="icon" href="./static/images/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@2.0.4/dist/css/bulma-carousel.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -157,9 +157,21 @@
           <div class="column is-four-fifths">
             <h2 class="title is-3">Abstract</h2>
             <div class="content has-text-justified">
-              <p> Deploying high-performance object detectors on TinyML platforms poses significant challenges due to tight hardware constraints and the modular complexity of modern detection pipelines. Neural Architecture Search (NAS) offers a path toward automation, but existing methods either restrict optimization to individual modules, sacrificing cross-module synergy, or require global searches that are computationally intractable. </p>
-              <p> We propose ELASTIC (Efficient Once for All Iterative Search for Object Detection on Microcontrollers), a unified, hardware-aware NAS framework that alternates optimization across modules (e.g., backbone, neck, and head) in a cyclic fashion. ELASTIC introduces a novel Population Passthrough mechanism in evolutionary search that retains high-quality candidates between search stages, yielding faster convergence, up to an 8% final mAP gain, and eliminates search instability observed without population passthrough. </p>
-              <p> In a controlled comparison, empirical results show ELASTIC achieves +4.75% higher mAP and 2× faster convergence than progressive NAS strategies on SVHN, and delivers a +9.09% mAP improvement on PascalVOC given the same search budget. ELASTIC achieves 72.3% mAP on PascalVOC, outperforming MCUNET by 20.9% and TinyissimoYOLO by 16.3%. When deployed on MAX78000/MAX78002 microcontrollers, ELASTIC-derived models outperform Analog Devices’ TinySSD baselines, reducing energy by up to 71.6%, lowering latency by up to 2.4×, and improving mAP by up to 6.99 percentage points across multiple datasets. </p>
+              <p> Deploying high-performance object detectors on TinyML platforms poses significant challenges due to tight 
+				  hardware constraints and the modular complexity of modern detection pipelines. Neural Architecture Search 
+				  (NAS) offers a path toward automation, but existing methods either restrict optimization to individual 
+				  modules, sacrificing cross-module synergy, or require global searches that are computationally intractable. </p>
+              <p> We propose ELASTIC (Efficient Once for All Iterative Search for Object Detection on Microcontrollers), a 
+				  unified, hardware-aware NAS framework that alternates optimization across modules (e.g., backbone, neck, 
+				  and head) in a cyclic fashion. ELASTIC introduces a novel Population Passthrough mechanism in evolutionary 
+				  search that retains high-quality candidates between search stages, yielding faster convergence, up to an 8% 
+				  final mAP gain, and eliminates search instability observed without population passthrough. </p>
+              <p> In a controlled comparison, empirical results show ELASTIC achieves +4.75% higher mAP and 2× faster 
+				  convergence than progressive NAS strategies on SVHN, and delivers a +9.09% mAP improvement on PascalVOC given 
+				  the same search budget. ELASTIC achieves 72.3% mAP on PascalVOC, outperforming MCUNET by 20.9% and 
+				  TinyissimoYOLO by 16.3%. When deployed on MAX78000/MAX78002 microcontrollers, ELASTIC-derived models outperform 
+				  Analog Devices’ TinySSD baselines, reducing energy by up to 71.6%, lowering latency by up to 2.4×, and improving 
+				  mAP by up to 6.99 percentage points across multiple datasets. </p>
             </div>
           </div>
         </div>
@@ -175,7 +187,9 @@
             <div class="structure-image">
               <img src="static/images/method.png" alt="Block Diagram">
             </div>
-            <p style="text-align: left;"> Our method begins with a pretrained supernet and performs iterative neural architecture search by alternating optimization between the backbone and head. The Population Passthrough mechanism ensures continuity by retaining top-performing candidates across module alternations. </p>
+            <p style="text-align: left;"> Our method begins with a pretrained supernet and performs iterative neural architecture 
+				search by alternating optimization between the backbone and head. The Population Passthrough mechanism ensures 
+				continuity by retaining top-performing candidates across module alternations. </p>
           </div>
         </div>
         <!--/ Paper video. -->
@@ -189,7 +203,8 @@
             <div class="table-container">
               <figure class="has-text-centered" id="tab-main-results">
                 <figcaption class="has-text-weight-semibold is-size-6" style="margin-bottom:0.5rem;">
-                  <strong>Quantitative comparison of search strategies on the SVHN and PascalVOC subset.</strong> ELASTIC consistently achieves the highest mAP on both datasets and reduces GPU hours by 59% on SVHN.
+                  <strong>Quantitative comparison of search strategies on the SVHN and PascalVOC subset.</strong> ELASTIC consistently 
+					achieves the highest mAP on both datasets and reduces GPU hours by 59% on SVHN.
                 </figcaption>
                 <table class="table is-striped is-hoverable is-fullwidth is-narrow" style="font-size:0.9rem;">
                   <thead>
@@ -315,7 +330,8 @@
                     </tr>
                   </tbody>
                 </table>
-                <p class="is-size-7 has-text-grey"> Notes: “MACs” denotes multiply–accumulate operations; “Cost” refers to total GPU hours required during search. Highlighted rows mark ELASTIC’s results for each dataset. </p>
+                <p class="is-size-7 has-text-grey"> Notes: “MACs” denotes multiply–accumulate operations; “Cost” refers to total GPU 
+					hours required during search. Highlighted rows mark ELASTIC’s results for each dataset. </p>
               </figure>
             </div>
           </div>
@@ -330,7 +346,10 @@
             <div class="table-container">
               <figure class="has-text-centered" id="tab-mcunet">
                 <figcaption class="has-text-weight-semibold is-size-6" style="margin-bottom:0.5rem;">
-                  <strong>Comparison of ELASTIC with TinyissimoYOLO and MCUNET on the full PascalVOC dataset, considering all object classes and counts.</strong> ELASTIC achieves a 20.9% mAP boost over MCUNET, 4.0% over MCUNetV2, and a 16.3% over TinyissimoYOLO’s best performing model, while discovering a model with significantly fewer MACs, enabling faster inference on microcontrollers.
+                  <strong>Comparison of ELASTIC with TinyissimoYOLO and MCUNET on the full PascalVOC dataset, considering all object 
+					  classes and counts.</strong> ELASTIC achieves a 20.9% mAP boost over MCUNET, 4.0% over MCUNetV2, and a 16.3% 
+					over TinyissimoYOLO’s best performing model, while discovering a model with significantly fewer MACs, enabling 
+					faster inference on microcontrollers.
                 </figcaption>
                 <table class="table is-striped is-hoverable is-fullwidth is-narrow" style="font-size:0.9rem;">
                   <thead>
@@ -430,7 +449,8 @@
                     </tr>
                   </tbody>
                 </table>
-                <p class="is-size-7 has-text-grey"> Notes: “MACs” denotes multiply–accumulate operations (lower is better). “&darr;MACs” and “&uarr;mAP” indicate relative change w.r.t. the MCUNetV2-H7 reference. </p>
+                <p class="is-size-7 has-text-grey"> Notes: “MACs” denotes multiply–accumulate operations (lower is better). 
+					“&darr;MACs” and “&uarr;mAP” indicate relative change w.r.t. the MCUNetV2-H7 reference. </p>
               </figure>
             </div>
           </div>
@@ -447,7 +467,11 @@
               <figure>
                 <img src="static/images/twosampling.png" alt="Search space refinement distributions" style="max-width:100%; height:auto;">
                 <figcaption class="is-size-6" style="margin-top:0.5rem; text-align:left;">
-                  <strong>Search space refinement through ELASTIC iteration.</strong> Distributions of 100 randomly sampled architectures from three head search spaces—joint NAS, progressive head-only, and ELASTIC-refined—on SVHN (left) and PascalVOC (right). ELASTIC produces architectures with a mean mAP improvement of +4.87% on SVHN and +0.43% on PascalVOC over progressive search. Compared to global joint search, ELASTIC improves the mAP by 26.07% and 23.33% on SVHN and PascalVOC, respectively.
+                  <strong>Search space refinement through ELASTIC iteration.</strong> Distributions of 100 randomly sampled 
+					architectures from three head search spaces—joint NAS, progressive head-only, and ELASTIC-refined—on SVHN 
+					(left) and PascalVOC (right). ELASTIC produces architectures with a mean mAP improvement of +4.87% on SVHN 
+					and +0.43% on PascalVOC over progressive search. Compared to global joint search, ELASTIC improves the mAP 
+					by 26.07% and 23.33% on SVHN and PascalVOC, respectively.
                 </figcaption>
               </figure>
             </div>
@@ -456,7 +480,10 @@
               <figure>
                 <img src="static/images/twoerrorbar.png" alt="Search space evolution over iterations" style="max-width:100%; height:auto;">
                 <figcaption class="is-size-6" style="margin-top:0.5rem; text-align:left;">
-                  <strong>Search Space Evolution Over Iterations.</strong> Mean accuracy and distribution of randomly sampled architectures at iterations 0, 3, and 5. On SVHN, ELASTIC continues to improve mean mAP by +3.3% while reducing variance by approximately 89.7%. On PascalVOC, mean mAP improves from 27.89% to 28.32%, with variance dropping by approximately 33%.
+                  <strong>Search Space Evolution Over Iterations.</strong> Mean accuracy and distribution of randomly sampled 
+					architectures at iterations 0, 3, and 5. On SVHN, ELASTIC continues to improve mean mAP by +3.3% while reducing 
+					variance by approximately 89.7%. On PascalVOC, mean mAP improves from 27.89% to 28.32%, with variance dropping 
+					by approximately 33%.
                 </figcaption>
               </figure>
             </div>
@@ -464,7 +491,11 @@
             <div class="table-container" style="margin-top:1.25rem;">
               <figure class="has-text-centered" id="tab-mean-std-variance">
                 <figcaption class="has-text-weight-semibold is-size-6" style="margin-bottom:0.5rem; text-align:left;">
-                  <strong>Mean mAP and Variance across Search Spaces.</strong> Superscripts indicate the iteration number in the iterative search process. A higher mean mAP indicates better average performance, while lower variance reflects more stable and consistent architectures discovered across runs. On SVHN, the mean mAP increases from 44.61% to 70.68%, accompanied by a reduction in variance from 0.193 to 0.199. On PascalVOC, mean mAP improves from 4.99% to 28.32%, while variance decreases by over 95%.
+                  <strong>Mean mAP and Variance across Search Spaces.</strong> Superscripts indicate the iteration number in the 
+					iterative search process. A higher mean mAP indicates better average performance, while lower variance reflects 
+					more stable and consistent architectures discovered across runs. On SVHN, the mean mAP increases from 44.61% to 
+					70.68%, accompanied by a reduction in variance from 0.193 to 0.199. On PascalVOC, mean mAP improves from 4.99% 
+					to 28.32%, while variance decreases by over 95%.
                 </figcaption>
                 <table class="table is-striped is-hoverable is-fullwidth is-narrow" style="font-size:0.9rem;">
                   <thead>
@@ -584,7 +615,8 @@
                     </tr>
                   </tbody>
                 </table>
-                <p class="is-size-7 has-text-grey"> Notes: Smaller variance values indicate greater stability and consistency in discovered architectures. </p>
+                <p class="is-size-7 has-text-grey"> Notes: Smaller variance values indicate greater stability and consistency in 
+					discovered architectures. </p>
               </figure>
             </div>
           </div>
@@ -600,7 +632,9 @@
             <div class="table-container">
               <figure class="has-text-centered" id="tab-max78000-results">
                 <figcaption class="has-text-weight-semibold is-size-6" style="margin-bottom:0.5rem; text-align:left;">
-                  <strong>Comparison of performance/efficiency metrics on the MAX78000/MAX78002 platforms.</strong> ELASTIC models achieve higher mAP, with gains of up to 6.99%, while consistently reducing energy consumption by up to 3.5× and power usage by up to 1.6× compared to baseline models. On the PascalVOC dataset, ELASTIC reduces latency by 2.4×.
+                  <strong>Comparison of performance/efficiency metrics on the MAX78000/MAX78002 platforms.</strong> ELASTIC models 
+					achieve higher mAP, with gains of up to 6.99%, while consistently reducing energy consumption by up to 3.5× and 
+					power usage by up to 1.6× compared to baseline models. On the PascalVOC dataset, ELASTIC reduces latency by 2.4×.
                 </figcaption>
                 <table class="table is-striped is-hoverable is-fullwidth is-narrow" style="font-size:0.9rem;">
                   <thead>
@@ -723,7 +757,9 @@
                 <figure>
                   <img src="static/images/sized.png" alt="Comparison of ELASTIC-derived models vs. scaled baselines" style="max-width:100%; height:auto;">
                   <figcaption class="is-size-6" style="margin-top:0.5rem; text-align:left;">
-                    <strong>Comparison of ELASTIC-derived models vs. scaled ai85net-tinierssd baselines.</strong> Marker size reflects number of FLOPs, positively correlated with energy. ELASTIC-derived models can reduce FLOPs by up to 66% with up to a 5.7% accuracy gain.
+                    <strong>Comparison of ELASTIC-derived models vs. scaled ai85net-tinierssd baselines.</strong> Marker size reflects 
+					  number of FLOPs, positively correlated with energy. ELASTIC-derived models can reduce FLOPs by up to 66% with up 
+					  to a 5.7% accuracy gain.
                   </figcaption>
                 </figure>
               </div>
@@ -732,7 +768,8 @@
                 <figure>
                   <img src="static/images/maxsvhn.jpg" alt="ELASTIC deployment on MAX78000 using SVHN dataset" style="max-width:100%; height:auto;">
                   <figcaption class="is-size-6" style="margin-top:0.5rem; text-align:left;">
-                    <strong>ELASTIC deployment on MAX78000 using SVHN dataset.</strong> ELASTIC produces compact, high-performing architectures suitable for ultra-low-power deployment.
+                    <strong>ELASTIC deployment on MAX78000 using SVHN dataset.</strong> ELASTIC produces compact, high-performing 
+					  architectures suitable for ultra-low-power deployment.
                   </figcaption>
                 </figure>
               </div>
@@ -744,8 +781,7 @@
     <section class="section" id="BibTeX">
       <div class="container is-max-desktop content">
         <h2 class="title">BibTeX</h2>
-        <pre>
-																								<code>@misc{tran2025facets,
+        <pre><code>@misc{tran2025facets,
       title={FACETS: Efficient Once-for-all Object Detection via Constrained Iterative Search}, 
       author={Tony Tran and Bin Hu},
       year={2025},
@@ -753,8 +789,7 @@
       archivePrefix={arXiv},
       primaryClass={cs.CV},
       url={https://arxiv.org/abs/2503.21999},
-}</code>
-																							</pre>
+}</code></pre>
       </div>
     </section>
     <footer class="footer">
@@ -762,7 +797,8 @@
         <div class="columns is-centered">
           <div class="column is-8">
             <div class="content">
-              <p> Website borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>
+              <p> Website borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> under 
+				  a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>
               </p>
             </div>
           </div>
