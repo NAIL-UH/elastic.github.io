@@ -252,6 +252,67 @@
     <!--/ Paper video. -->
   </div>
   </section>
+
+  <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Quantitative Comparison of Search Strategies</h2>
+        <div class="table-container">
+          <figure class="has-text-centered" id="tab-main-results">
+            <figcaption class="has-text-weight-semibold is-size-6" style="margin-bottom:0.5rem;">
+              <strong>Quantitative comparison of search strategies on the SVHN and PascalVOC subset.</strong>
+              ELASTIC consistently achieves the highest mAP on both datasets and reduces GPU hours by 59% on SVHN.
+            </figcaption>
+
+            <table class="table is-striped is-hoverable is-fullwidth is-narrow" style="font-size:0.9rem;">
+              <thead>
+                <tr>
+                  <th>Dataset</th>
+                  <th>Method</th>
+                  <th>mAP</th>
+                  <th>&uarr;mAP</th>
+                  <th>Cost</th>
+                  <th>MACs</th>
+                  <th>Params</th>
+                  <th>Latency</th>
+                </tr>
+              </thead>
+              <tbody class="has-text-centered">
+
+                <!-- SVHN Section -->
+                <tr><td rowspan="4"><strong>SVHN</strong></td>
+                  <td>Backbone-Only</td><td>75.53%</td><td>+0.18%</td><td>10.8 hrs</td><td>137.6 M</td><td>0.73 M</td><td>2.62 ms</td></tr>
+                <tr><td>Head-Only</td><td>75.35%</td><td>+0.00%</td><td>4.7 hrs</td><td>475.3 M</td><td>1.01 M</td><td>2.69 ms</td></tr>
+                <tr><td>Progressive</td><td>79.62%</td><td>+4.27%</td><td>30.8 hrs</td><td>78.4 M</td><td>0.52 M</td><td>2.36 ms</td></tr>
+                <tr class="has-background-primary-light">
+                  <td><strong>ELASTIC (OURS)</strong></td><td><strong>80.09%</strong></td><td><strong>+4.74%</strong></td>
+                  <td><strong>12.5 hrs</strong></td><td><strong>105.8 M</strong></td><td><strong>0.61 M</strong></td><td><strong>2.34 ms</strong></td>
+                </tr>
+
+                <!-- PascalVOC Section -->
+                <tr><td rowspan="4"><strong>PascalVOC</strong></td>
+                  <td>Backbone-Only</td><td>22.02%</td><td>+2.80%</td><td>9.6 hrs</td><td>436.1 M</td><td>0.58 M</td><td>2.11 ms</td></tr>
+                <tr><td>Head-Only</td><td>19.22%</td><td>+0.00%</td><td>6.0 hrs</td><td>240.0 M</td><td>0.36 M</td><td>2.48 ms</td></tr>
+                <tr><td>Progressive</td><td>21.74%</td><td>+2.52%</td><td>14.8 hrs</td><td>540.0 M</td><td>0.41 M</td><td>2.66 ms</td></tr>
+                <tr class="has-background-primary-light">
+                  <td><strong>ELASTIC (OURS)</strong></td><td><strong>30.83%</strong></td><td><strong>+11.61%</strong></td>
+                  <td><strong>14.65 hrs</strong></td><td><strong>642.8 M</strong></td><td><strong>0.57 M</strong></td><td><strong>2.00 ms</strong></td>
+                </tr>
+
+              </tbody>
+            </table>
+
+            <p class="is-size-7 has-text-grey">
+              Notes: “MACs” denotes multiply–accumulate operations; “Cost” refers to total GPU hours required during search.
+              Highlighted rows mark ELASTIC’s results for each dataset.
+            </p>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
   
   <section class="section">
   <div class="container is-max-desktop">
@@ -305,6 +366,130 @@
     </div>
   </div>
 </section>
+
+  <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Search Space Refinement & Evolution</h2>
+
+        <!-- Two figures side-by-side -->
+        <div class="columns is-vcentered">
+          <!-- Left figure -->
+          <div class="column has-text-centered">
+            <figure>
+              <img src="static/images/twosampling.png" alt="Search space refinement distributions" style="max-width:100%; height:auto;">
+              <figcaption class="is-size-6" style="margin-top:0.5rem; text-align:left;">
+                <strong>Search space refinement through ELASTIC iteration.</strong>
+                Distributions of 100 randomly sampled architectures from three head search spaces—joint NAS, progressive head-only, and ELASTIC-refined—on SVHN (left) and PascalVOC (right). ELASTIC produces architectures with a mean mAP improvement of +4.87% on SVHN and +0.43% on PascalVOC over progressive search. Compared to global joint search, ELASTIC improves the mAP by 26.07% and 23.33% on SVHN and PascalVOC, respectively.
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- Right figure -->
+          <div class="column has-text-centered">
+            <figure>
+              <img src="static/images/twoerrorbar.png" alt="Search space evolution over iterations" style="max-width:100%; height:auto;">
+              <figcaption class="is-size-6" style="margin-top:0.5rem; text-align:left;">
+                <strong>Search Space Evolution Over Iterations.</strong>
+                Mean accuracy and distribution of randomly sampled architectures at iterations 0, 3, and 5.
+                On SVHN, ELASTIC continues to improve mean mAP by +3.3% while reducing variance by approximately 89.7%. On PascalVOC, mean mAP improves from 27.89% to 28.32%, with variance dropping by approximately 33%.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Table: Mean mAP and Variance across Search Spaces -->
+        <div class="table-container" style="margin-top:1.25rem;">
+          <figure class="has-text-centered" id="tab-mean-std-variance">
+            <figcaption class="has-text-weight-semibold is-size-6" style="margin-bottom:0.5rem; text-align:left;">
+              <strong>Mean mAP and Variance across Search Spaces.</strong>
+              Superscripts indicate the iteration number in the iterative search process. A higher mean mAP indicates better average performance, while lower variance reflects more stable and consistent architectures discovered across runs. On SVHN, the mean mAP increases from 44.61% to 70.68%, accompanied by a reduction in variance from 0.193 to 0.199. On PascalVOC, mean mAP improves from 4.99% to 28.32%, while variance decreases by over 95%.
+            </figcaption>
+
+            <table class="table is-striped is-hoverable is-fullwidth is-narrow" style="font-size:0.9rem;">
+              <thead>
+                <tr>
+                  <th>Dataset</th>
+                  <th>Search Space</th>
+                  <th>Mean mAP</th>
+                  <th>&uarr;mAP</th>
+                  <th>Std. Dev.</th>
+                  <th>Variance</th>
+                </tr>
+              </thead>
+              <tbody class="has-text-centered">
+                <!-- SVHN -->
+                <tr>
+                  <td rowspan="4"><strong>SVHN</strong></td>
+                  <td>Joint Search</td>
+                  <td>44.61%</td>
+                  <td>0%</td>
+                  <td>1.39</td>
+                  <td>1.93</td>
+                </tr>
+                <tr>
+                  <td>Head Search</td>
+                  <td>67.38%</td>
+                  <td>+22.77%</td>
+                  <td><strong>0.37</strong></td>
+                  <td><strong>0.136</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>ELASTIC</strong><sup>(3)</sup></td>
+                  <td>70.42%</td>
+                  <td>+25.81%</td>
+                  <td>0.47</td>
+                  <td>0.221</td>
+                </tr>
+                <tr class="has-background-primary-light">
+                  <td><strong>ELASTIC</strong><sup>(5)</sup></td>
+                  <td><strong>70.68%</strong></td>
+                  <td><strong>+26.07%</strong></td>
+                  <td>0.45</td>
+                  <td>0.199</td>
+                </tr>
+
+                <!-- PascalVOC -->
+                <tr>
+                  <td rowspan="4"><strong>PascalVOC</strong></td>
+                  <td>Joint Search</td>
+                  <td>4.99%</td>
+                  <td>0%</td>
+                  <td>0.04</td>
+                  <td>1.40 &times; 10<sup>−3</sup></td>
+                </tr>
+                <tr>
+                  <td>Head Search</td>
+                  <td>27.89%</td>
+                  <td>+22.90%</td>
+                  <td><strong>0.01</strong></td>
+                  <td><strong>9.86 &times; 10<sup>−5</sup></strong></td>
+                </tr>
+                <tr>
+                  <td><strong>ELASTIC</strong><sup>(3)</sup></td>
+                  <td>28.28%</td>
+                  <td>+23.29%</td>
+                  <td><strong>0.01</strong></td>
+                  <td><strong>7.04 &times; 10<sup>−5</sup></strong></td>
+                </tr>
+                <tr class="has-background-primary-light">
+                  <td><strong>ELASTIC</strong><sup>(5)</sup></td>
+                  <td><strong>28.32%</strong></td>
+                  <td><strong>+23.33%</strong></td>
+                  <td><strong>0.01</strong></td>
+                  <td><strong>6.60 &times; 10<sup>−5</sup></strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </figure>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 
         <!-- Simulation -->
     <section class="section">
