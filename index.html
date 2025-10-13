@@ -33,7 +33,7 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/icon.png">
+  <link rel="icon" href="static/images/icon.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@2.0.4/dist/css/bulma-carousel.min.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -194,7 +194,7 @@
   <div class="columns is-centered has-text-centered">
     <div class="column is-half-width">
       <div class="cover-image">
-        <img src="/static/images/historyannot.png" alt="Cover Image">
+        <img src="static/images/historyannot.png" alt="Cover Image">
       </div>
     </div>
   </div>
@@ -207,21 +207,24 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            This paper addresses a distributed leader-follower formation control problem for a group of agents, 
-            each using a body-fixed camera with a limited field of view (FOV) for state estimation.
+            Deploying high-performance object detectors on TinyML platforms poses significant challenges due to tight 
+            hardware constraints and the modular complexity of modern detection pipelines. Neural Architecture Search (NAS) 
+            offers a path toward automation, but existing methods either restrict optimization to individual modules, 
+            sacrificing cross-module synergy, or require global searches that are computationally intractable.
           </p>
           <p>
-            The main challenge arises from the need to coordinate the agents' movements with their cameras' FOV
-            to maintain visibility of the leader for accurate and reliable state estimation. To address this challenge, 
-            we propose a novel perception-aware distributed leader-follower safe control scheme that incorporates FOV 
-            limits as state constraints. A Control Barrier Function (CBF) based quadratic program is employed to ensure 
-            the forward invariance of a safety set defined by these constraints. Furthermore, new neural network based 
-            and double bounding boxes based estimators, combined with temporal filters, are developed to estimate system 
-            states directly from real-time image data, providing consistent performance across various environments.
+            We propose ELASTIC (Efficient Once for All Iterative Search for Object Detection on Microcontrollers), 
+            a unified, hardware-aware NAS framework that alternates optimization across modules (e.g., backbone, neck, and head) 
+            in a cyclic fashion. ELASTIC introduces a novel Population Passthrough mechanism in evolutionary search that retains 
+            high-quality candidates between search stages, yielding faster convergence, up to an 8% final mAP gain, and eliminates 
+            search instability observed without population passthrough.
           </p>
           <p>
-            Comparison results in the Gazebo simulator demonstrate the effectiveness and robustness of the proposed 
-            framework in two distinct environments. The benefits of proposed methods are also validated through experiments using <a href="https://husarion.com/tutorials/howtostart/rosbot2r-quick-start/"> <b> Husarion ROSbot 2 Pro  </b></a> mobile robots.
+            In a controlled comparison, empirical results show ELASTIC achieves +4.75% higher mAP and 2× faster convergence than 
+            progressive NAS strategies on SVHN, and delivers a +9.09% mAP improvement on PascalVOC given the same search budget. 
+            ELASTIC achieves 72.3% mAP on PascalVOC, outperforming MCUNET by 20.9% and TinyissimoYOLO by 16.3%. When deployed on 
+            MAX78000/MAX78002 microcontrollers, ELASTIC-derived models outperform Analog Devices’ TinySSD baselines, reducing energy 
+            by up to 71.6%, lowering latency by up to 2.4×, and improving mAP by up to 6.99 percentage points across multiple datasets.
           </p>
         </div>
       </div>
@@ -235,14 +238,14 @@
     <!-- Paper Structure. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Perception-aware CBF based Leader-follower Control</h2>
-        <div class="structure-image">
-          <img src="https://raw.githubusercontent.com/RichieRyu/palf.github.io/main/static/images/BlockDiagram.jpg" alt="Block Diagram Image">
-        </div>
-            <p style="text-align: left;">
- We propose a novel perception-aware, distributed leader-follower control scheme that explicitly incorporates camera FOV limitations as state constraints. 
-              A CBF-QP framework is employed to enforce forward invariance of a safety set defined by these constraints. 
-              Deep Neural network (DNN) based and double bounding boxes (DBB) based estimators combined with temporal filters are introduced to obtain reliable estimates for leader-follower states across different environments. 
+        <h2 class="title is-3">Overview of ELASTIC Framework</h2>
+          <div class="structure-image">
+            <img src="static/images/method.png" alt="Block Diagram">
+          </div>
+          <p style="text-align: left;">
+            Our method begins with a pretrained supernet and performs iterative neural architecture search by alternating 
+            optimization between the backbone and head. The Population Passthrough mechanism ensures continuity by retaining 
+            top-performing candidates across module alternations. 
           </p>
       </div>
     </div>
