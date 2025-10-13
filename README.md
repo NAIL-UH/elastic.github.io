@@ -1,14 +1,17 @@
-# Nerfies
+# ELASTIC
 
-This is the repository that contains source code for the [Nerfies website](https://nerfies.github.io).
+This is the repository that contains source code for the [ELASTIC website](https://nail-uh.github.io/elastic.github.io/).
 
 If you find Nerfies useful for your work please cite:
 ```
-@article{park2021nerfies
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
+@misc{tran2025facets,
+      title={FACETS: Efficient Once-for-all Object Detection via Constrained Iterative Search}, 
+      author={Tony Tran and Bin Hu},
+      year={2025},
+      eprint={2503.21999},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2503.21999}, 
 }
 ```
 
