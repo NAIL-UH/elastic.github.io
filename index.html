@@ -502,7 +502,7 @@
             <img src="static/images/twosampling.png" alt="Search space refinement distributions" style="max-width:100%; height:auto;">
             <figcaption class="is-size-6" style="margin-top:0.5rem; text-align:left;">
               <strong>Search space refinement through ELASTIC iteration.</strong>
-              Distributions of 100 randomly sampled architectures from three head search spaces—joint NAS, progressive head-only, and ELASTIC-refined—on SVHN (top) and PascalVOC (bottom). ELASTIC produces architectures with a mean mAP improvement of +4.87% on SVHN and +0.43% on PascalVOC over progressive search. Compared to global joint search, ELASTIC improves the mAP by 26.07% and 23.33% on SVHN and PascalVOC, respectively.
+              Distributions of 100 randomly sampled architectures from three head search spaces—joint NAS, progressive head-only, and ELASTIC-refined—on SVHN (left) and PascalVOC (right). ELASTIC produces architectures with a mean mAP improvement of +4.87% on SVHN and +0.43% on PascalVOC over progressive search. Compared to global joint search, ELASTIC improves the mAP by 26.07% and 23.33% on SVHN and PascalVOC, respectively.
             </figcaption>
           </figure>
         </div>
@@ -606,6 +606,126 @@
             <p class="is-size-7 has-text-grey">
               Notes: Smaller variance values indicate greater stability and consistency in discovered architectures.
             </p>
+          </figure>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Performance & Efficiency on MAX78000/MAX78002</h2>
+
+        <!-- Table first -->
+        <div class="table-container">
+          <figure class="has-text-centered" id="tab-max78000-results">
+            <figcaption class="has-text-weight-semibold is-size-6" style="margin-bottom:0.5rem; text-align:left;">
+              <strong>Comparison of performance/efficiency metrics on the MAX78000/MAX78002 platforms.</strong>
+              ELASTIC models achieve higher mAP, with gains of up to 6.99%, while consistently reducing energy consumption by up to 3.5× and power usage by up to 1.6× compared to baseline models. On the PascalVOC dataset, ELASTIC reduces latency by 2.4×.
+            </figcaption>
+
+            <table class="table is-striped is-hoverable is-fullwidth is-narrow" style="font-size:0.9rem;">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Dataset</th>
+                  <th>Device</th>
+                  <th>Params</th>
+                  <th>Energy (&mu;J)</th>
+                  <th>Latency (ms)</th>
+                  <th>Power (mW)</th>
+                  <th>mAP (%)</th>
+                </tr>
+              </thead>
+              <tbody class="has-text-centered">
+                <tr>
+                  <td>ai87-fpndetector</td>
+                  <td>PascalVOC</td>
+                  <td>MAX78002</td>
+                  <td>2.18M</td>
+                  <td>62001</td>
+                  <td>122.6</td>
+                  <td>445.76</td>
+                  <td>50.66</td>
+                </tr>
+                <tr class="has-background-primary-light">
+                  <td><strong>ELASTIC (OURS)</strong></td>
+                  <td>PascalVOC</td>
+                  <td>MAX78002</td>
+                  <td><strong>1.32M</strong></td>
+                  <td><strong>17581</strong></td>
+                  <td><strong>51.1</strong></td>
+                  <td><strong>285.02</strong></td>
+                  <td><strong>57.65</strong></td>
+                </tr>
+                <tr>
+                  <td>ai85net-tinierssd-face</td>
+                  <td>VGGFace2</td>
+                  <td>MAX78000</td>
+                  <td>0.28M</td>
+                  <td>1712</td>
+                  <td><strong>43.4</strong></td>
+                  <td>29.90</td>
+                  <td>84.72</td>
+                </tr>
+                <tr class="has-background-primary-light">
+                  <td><strong>ELASTIC (OURS)</strong></td>
+                  <td>VGGFace2</td>
+                  <td>MAX78000</td>
+                  <td><strong>0.22M</strong></td>
+                  <td><strong>1368</strong></td>
+                  <td>45.6</td>
+                  <td><strong>20.90</strong></td>
+                  <td><strong>87.10</strong></td>
+                </tr>
+                <tr>
+                  <td>ai85net-tinierssd</td>
+                  <td>SVHN</td>
+                  <td>MAX78000</td>
+                  <td><strong>0.19M</strong></td>
+                  <td>573</td>
+                  <td>14.0</td>
+                  <td>29.20</td>
+                  <td>83.60</td>
+                </tr>
+                <tr class="has-background-primary-light">
+                  <td><strong>ELASTIC (OURS)</strong></td>
+                  <td>SVHN</td>
+                  <td>MAX78000</td>
+                  <td>0.22M</td>
+                  <td><strong>341</strong></td>
+                  <td><strong>13.0</strong></td>
+                  <td><strong>16.70</strong></td>
+                  <td><strong>88.10</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </figure>
+        </div>
+
+        <!-- Figure 1 -->
+        <div class="has-text-centered" style="margin-top:1.5rem; margin-bottom:2rem;">
+          <figure>
+            <img src="static/images/sized.png" alt="Comparison of ELASTIC-derived models vs. scaled baselines" style="max-width:100%; height:auto;">
+            <figcaption class="is-size-6" style="margin-top:0.5rem; text-align:left;">
+              <strong>Comparison of ELASTIC-derived models vs. scaled ai85net-tinierssd baselines.</strong>
+              Marker size reflects number of FLOPs, positively correlated with energy. ELASTIC-derived models can reduce FLOPs by up to 66% with up to a 5.7% accuracy gain.
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Figure 2 -->
+        <div class="has-text-centered">
+          <figure>
+            <img src="static/images/maxsvhn.jpg" alt="ELASTIC deployment on MAX78000 using SVHN dataset" style="max-width:100%; height:auto;">
+            <figcaption class="is-size-6" style="margin-top:0.5rem; text-align:left;">
+              <strong>ELASTIC deployment on MAX78000 using SVHN dataset.</strong>
+              ELASTIC produces compact, high-performing architectures suitable for ultra-low-power deployment.
+            </figcaption>
           </figure>
         </div>
 
