@@ -253,41 +253,58 @@
   </div>
   </section>
   
-    <section class="section">
-        <div class="container is-max-desktop">
-    <div class="columns is-centered">
+  <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Comparison of ELASTIC Framework</h2>
+        <div class="table-container">
+          <figure class="has-text-centered" id="tab-mcunet">
+            <figcaption class="has-text-weight-semibold is-size-6" style="margin-bottom:0.5rem;">
+              <strong>Comparison of ELASTIC with TinyissimoYOLO and MCUNET on the full PascalVOC dataset, considering all object classes and counts.</strong>
+              ELASTIC achieves a 20.9% mAP boost over MCUNET, 4.0% over MCUNetV2, and a 16.3% over TinyissimoYOLO’s best performing model, while discovering a model with significantly fewer MACs, enabling faster inference on microcontrollers.
+            </figcaption>
 
-      <!-- DNN. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">DNN Angle Estimation</h2>
-          <p>
-           A DNN-based estimator, combined with a linear temporal filter, maps real-time image data to angle estimates by framing the estimation task as an image classification problem.
-          </p>
-          <div class="structure-image">
-            <img src="https://raw.githubusercontent.com/RichieRyu/palf.github.io/main/static/images/DNN.jpg" alt="DNN Image">
-          </div>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
+            <table class="table is-striped is-hoverable is-fullwidth is-narrow" style="font-size:0.9rem;">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>MACs</th>
+                  <th>&darr;MACs</th>
+                  <th>Params</th>
+                  <th>VOC mAP</th>
+                  <th>&uarr;mAP</th>
+                </tr>
+              </thead>
+              <tbody class="has-text-centered">
+                <tr><td>TY: 20-3-88</td><td>32M</td><td>90.7%</td><td>0.58M</td><td>53%</td><td>+30%</td></tr>
+                <tr><td>TY: 20-7-88</td><td>44M</td><td>87.2%</td><td>0.58M</td><td>47%</td><td>+24%</td></tr>
+                <tr><td>TY: 20-3-112</td><td>54M</td><td>84.3%</td><td>0.89M</td><td>56%</td><td>+33%</td></tr>
+                <tr><td>TY: 20-7-112</td><td>70M</td><td>79.6%</td><td>0.91M</td><td>53%</td><td>+30%</td></tr>
+                <tr><td>TY: 20-3-224</td><td>218M</td><td>36.4%</td><td>3.34M</td><td>23%</td><td>+0%</td></tr>
+                <tr><td>MCUNet</td><td>168M</td><td>51.0%</td><td>1.2M</td><td>51.4%</td><td>+28.4%</td></tr>
+                <tr><td>MCUNetV2-M4</td><td>172M</td><td>49.9%</td><td>0.47M</td><td>64.6%</td><td>+41.6%</td></tr>
+                <tr><td>MCUNetV2-H7</td><td>343M</td><td>0%</td><td>0.67M</td><td>68.3%</td><td>+45.3%</td></tr>
+                <tr class="has-background-primary-light">
+                  <td><strong>ELASTIC (OURS)</strong></td>
+                  <td><strong>86M</strong></td>
+                  <td><strong>74.9%</strong></td>
+                  <td><strong>1.36M</strong></td>
+                  <td><strong>72.3%</strong></td>
+                  <td><strong>+49.3%</strong></td>
+                </tr>
+              </tbody>
+            </table>
 
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">DBB Distance Estimation</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              The DBB method uses a CSRT tracker on the RGB image to generate a red bounding box that locates the leader, then scales it to half its dimensions on the depth image as a green bounding box to estimate the distance.
+            <p class="is-size-7 has-text-grey">
+              Notes: “MACs” denotes multiply–accumulate operations (lower is better). “&darr;MACs” and “&uarr;mAP” indicate relative change w.r.t. the MCUNetV2-H7 reference.
             </p>
-            <div class="structure-image">
-              <img src="https://raw.githubusercontent.com/RichieRyu/palf.github.io/main/static/images/CSRT.png" alt="CSRT Image">
-            </div>
-          </div>
-         </div>
+          </figure>
         </div>
       </div>
-    <!--/ Matting. -->
-  </section>
+    </div>
+  </div>
+</section>
 
         <!-- Simulation -->
     <section class="section">
