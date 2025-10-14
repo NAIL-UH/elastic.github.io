@@ -2,7 +2,7 @@
 
 This is the repository that contains source code for the [ELASTIC website](https://nail-uh.github.io/elastic.github.io/).
 
-If you find Nerfies useful for your work please cite:
+If you find ELASTIC useful for your work please cite:
 ```
 @misc{tran2025facets,
       title={FACETS: Efficient Once-for-all Object Detection via Constrained Iterative Search}, 
