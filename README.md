@@ -4,9 +4,9 @@ This is the repository that contains source code for the [ELASTIC website](https
 
 If you find ELASTIC useful for your work please cite:
 ```
-@misc{tran2025facets,
-      title={FACETS: Efficient Once-for-all Object Detection via Constrained Iterative Search}, 
-      author={Tony Tran and Bin Hu},
+@misc{tran2025elasticefficientiterativesearch,
+      title={ELASTIC: Efficient Once For All Iterative Search for Object Detection on Microcontrollers}, 
+      author={Tony Tran and Qin Lin and Bin Hu},
       year={2025},
       eprint={2503.21999},
       archivePrefix={arXiv},
